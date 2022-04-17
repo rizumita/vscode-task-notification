@@ -1,45 +1,84 @@
 {
   "name": "vscode-task-notification",
-	"displayName": "TaskNotification",
-	"description": "",
-	"version": "0.0.1",
-	"engines": {
-		"vscode": "^1.66.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-        "onCommand:vscode-task-notification.helloWorld"
-	],
-	"main": "./out/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "vscode-task-notification.helloWorld",
-				"title": "Hello World"
-			}
-		]
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"pretest": "npm run compile && npm run lint",
-		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js"
-	},
-	"devDependencies": {
-		"@types/vscode": "^1.66.0",
-		"@types/glob": "^7.2.0",
-		"@types/mocha": "^9.1.0",
-		"@types/node": "14.x",
-		"@typescript-eslint/eslint-plugin": "^5.16.0",
-		"@typescript-eslint/parser": "^5.16.0",
-		"eslint": "^8.11.0",
-		"glob": "^7.2.0",
-		"mocha": "^9.2.2",
-		"typescript": "^4.5.5",
-		"@vscode/test-electron": "^2.1.3"
-	}
+  "displayName": "Task Notification",
+  "description": "",
+  "publisher": "Ryoichi Izumita",
+  "author": {
+    "name": "Ryoichi Izumita"
+  },
+  "homepage": "https://github.com/rizumita/vscode-task-notification/blob/master/README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rizumita/vscode-task-notification.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rizumita/vscode-task-notification/issues"
+  },
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.66.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "Task",
+    "Notification"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Task Notification",
+      "properties": {
+        "taskNotification.playSound": {
+          "type": "boolean",
+          "description": "Play sound when notifying by system notification",
+          "default": true,
+          "scope": "resource"
+        },
+        "taskNotification.style": {
+          "type": "string",
+          "description": "Notification style",
+          "default": "system",
+          "scope": "resource",
+          "enum": [
+            "system",
+            "vscode"
+          ],
+          "enumDescriptions": [
+            "System notification",
+            "VSCode notification"
+          ]
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.0",
+    "@types/node": "14.x",
+    "@types/node-notifier": "^8.0.2",
+    "@types/vscode": "^1.66.0",
+    "@typescript-eslint/eslint-plugin": "^5.16.0",
+    "@typescript-eslint/parser": "^5.16.0",
+    "@vscode/test-electron": "^2.1.3",
+    "eslint": "^8.11.0",
+    "glob": "^7.2.0",
+    "mocha": "^9.2.2",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "node-notifier": "^10.0.1"
+  }
 }
